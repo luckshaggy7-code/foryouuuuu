@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour toi ❤️</title>
+
+<style>
+body{
+text-align:center;
+font-family:Arial;
+background:#ffe6f0;
+padding:20px;
+margin:0;
+overflow:hidden;
+}
+
+h1{font-size:24px;}
+
+button{
+padding:15px;
+font-size:18px;
+margin:10px;
+width:80%;
+max-width:300px;
+border:none;
+border-radius:10px;
+}
+
+.heart{
+position:absolute;
+color:red;
+font-size:20px;
+animation:fall 3s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10px);}
+100%{transform:translateY(100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<h1>Bonjour la plus belle femme du monde ❤️</h1>
+<p>Tu m’aimes ?</p>
+
+<button onclick="next()">Oui ❤️</button>
+<button ontouchstart="escape(this)" onmouseover="escape(this)">Non 😒</button>
+
+<script>
+let step = 0;
+
+function escape(btn){
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"vw";
+btn.style.top=Math.random()*80+"vh";
+
+// emojis 😳
+let emoji = document.createElement("div");
+emoji.innerHTML = "😳😳😳";
+emoji.style.position = "absolute";
+emoji.style.left = btn.style.left;
+emoji.style.top = btn.style.top;
+emoji.style.fontSize = "25px";
+
+document.body.appendChild(emoji);
+
+setTimeout(()=>{
+emoji.remove();
+},1000);
+}
+
+function next(){
+step++;
+
+if(step === 1){
+document.body.innerHTML = `
+<h1>Tu m’aimes vraiment ? 😏</h1>
+<button onclick="next()">Oui ❤️</button>
+<button ontouchstart="escape(this)" onmouseover="escape(this)">Non 😒</button>
+`;
+}
+
+else if(step === 2){
+document.body.innerHTML = `
+<h1>Qui est la plus belle femme du monde ? 😈</h1>
+<button onclick="wrong()">Sabrina Carpenter</button>
+<button onclick="wrong()">Megan Thee Stallion</button>
+<button onclick="wrong()">Tina Kunakey</button>
+`;
+}
+
+else if(step === 3){
+document.body.innerHTML = `
+<h1>Si tu me voyais tromper… tu me tuerais ? 😳😂</h1>
+
+<button ontouchstart="escape(this)" onmouseover="escape(this)">Oui 😈</button>
+<button onclick="next()">Non ❤️</button>
+`;
+}
+
+else if(step === 4){
+document.body.innerHTML = `
+<h1>Tu veux rester avec moi pour toujours ? 😳</h1>
+<button onclick="next()">Oui ❤️</button>
+<button ontouchstart="escape(this)" onmouseover="escape(this)">Non 😭</button>
+`;
+}
+
+else{
+document.body.innerHTML = `
+<h1>💖 TU ES LA PLUS BELLE 💖</h1>
+<h2>Je t’aime 😽🫶🏽</h2>
+<br>
+<button onclick="location.reload()">🔄 Recommencer</button>
+`;
+hearts();
+}
+}
+
+function wrong(){
+document.body.innerHTML = `
+<h1>😡 WRONGGGG !!!</h1>
+<h2>💖 C’EST TOI LA PLUS BELLE DE CETTE GALAXIE 💖</h2>
+<h3>Je t’aime 😽🫶🏽</h3>
+<br>
+<button onclick="location.reload()">🔄 Recommencer</button>
+`;
+hearts();
+}
+
+function hearts(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),3000);
+},200);
+}
+</script>
+
+</body>
+</html>
